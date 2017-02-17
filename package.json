@@ -3,7 +3,7 @@
   "description": "A npm project",
   "version": "0.0.1",
   "author": "limichange <limichange@hotmail.com>",
-  "main": "dist/yuki-gta.common.js",
+  "main": "dist/yuki-gta.js",
   "unpkg": "dist/yuki-gta.js",
   "scripts": {
     "dev": "rollup -cw",
