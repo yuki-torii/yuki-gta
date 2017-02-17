@@ -1,9 +1,3 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global['yuki-gta'] = factory());
-}(this, (function () { 'use strict';
-
 var Common = {
   removeElement: function removeElement (el) {
     el.parentNode.removeChild(el);
@@ -145,6 +139,4 @@ yukiGta.prototype.event = function event (options) {
   });
 };
 
-return yukiGta;
-
-})));
+export default yukiGta;
