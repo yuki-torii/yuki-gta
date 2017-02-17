@@ -3,8 +3,8 @@
   "description": "A npm project",
   "version": "0.0.1",
   "author": "limichange <limichange@hotmail.com>",
-  "main": "dist/yuki-gta.js",
-  "unpkg": "dist/yuki-gta.js",
+  "main": "dist/yuki-gta.common.js",
+  "unpkg": "dist/yuki-gta.min.js",
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c --environment BUILD && uglifyjs dist/yuki-gta.js > dist/yuki-gta.min.js",
