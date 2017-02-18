@@ -1,33 +1,28 @@
-import Base from './base'
+import Common from '../common'
 
-class Google extends Base {
+class Google {
   constructor (account) {
-    super()
     window.GoogleAnalyticsObject = 'ga'
 
-    let ga = window.ga || function () {
-      ga.q.push(arguments)
+    const ga = window.ga = window.ga || function () {
+      (window.ga.q = window.ga.q || []).push(arguments)
     }
 
     ga.q = []
     ga.l = 1 * new Date()
 
-    const script = this.createScript('//www.google-analytics.com/analytics.js')
-    this.loadScript(script, 'ga')
-
-    ga('create', account, 'auto', 'moment')
+    ga('create', account, 'auto')
     ga('send', 'pageview')
 
-    window.ga = ga
+    const script = Common.createScript('https://www.google-analytics.com/analytics.js')
+    Common.loadScript(script, 'ga')
   }
 
   pageview (page) {
-    console.log(page)
     window.ga('send', 'pageview', page)
   }
 
   event (options) {
-    console.log(options)
     window.ga(
       'send',
       'event',

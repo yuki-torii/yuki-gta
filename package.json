@@ -5,6 +5,9 @@
   "author": "limichange <limichange@hotmail.com>",
   "main": "dist/yuki-gta.common.js",
   "unpkg": "dist/yuki-gta.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c --environment BUILD && uglifyjs dist/yuki-gta.js > dist/yuki-gta.min.js",
