@@ -3,111 +3,82 @@
 var Common = {
   removeElement: function removeElement (el) {
     el.parentNode.removeChild(el);
-  }
-};
-
-var Base = function Base () {
-  this.name = 'base';
-};
-
-Base.prototype.createScript = function createScript (src) {
-  var script = document.createElement('script');
-  script.async = 1;
-  script.src = src;
-  return script
-};
-
-Base.prototype.loadScript = function loadScript (script, key, removeAfterLoad) {
+  },
+  createScript: function createScript (src) {
+    var script = document.createElement('script');
+    script.async = 1;
+    script.src = src;
+    return script
+  },
+  loadScript: function loadScript (script, key, removeAfterLoad) {
+    var this$1 = this;
     if ( removeAfterLoad === void 0 ) removeAfterLoad = false;
 
-  script.onerror = function () {
-    window[key] = null;
-    Common.removeElement(script);
-  };
-
-  script.onload = function () {
-    removeAfterLoad && Common.removeElement(script);
-  };
-
-  var firstScript = document.getElementsByTagName('script')[0];
-  firstScript.parentNode.insertBefore(script, firstScript);
-};
-
-var Baidu = (function (Base$$1) {
-  function Baidu (account) {
-    Base$$1.call(this);
-    window._hmt = window._hmt || [];
-    var script = this.createScript(("//hm.baidu.com/hm.js?" + account));
-    this.loadScript(script, '_hmt');
-  }
-
-  if ( Base$$1 ) Baidu.__proto__ = Base$$1;
-  Baidu.prototype = Object.create( Base$$1 && Base$$1.prototype );
-  Baidu.prototype.constructor = Baidu;
-
-  Baidu.prototype.pageview = function pageview (page) {
-    console.log(page);
-    window._hmt && window._hmt.push(['_trackPageview', page]);
-  };
-
-  Baidu.prototype.event = function event (options) {
-    console.log(options);
-    window._hmt && window._hmt.push([
-      '_trackEvent',
-      options.page,
-      options.action,
-      options.label,
-      options.value
-    ]);
-  };
-
-  return Baidu;
-}(Base));
-
-var Google = (function (Base$$1) {
-  function Google (account) {
-    Base$$1.call(this);
-    window.GoogleAnalyticsObject = 'ga';
-
-    var ga = window.ga || function () {
-      ga.q.push(arguments);
+    script.onerror = function () {
+      window[key] = null;
+      this$1.removeElement(script);
     };
 
-    ga.q = [];
-    ga.l = 1 * new Date();
+    script.onload = function () {
+      removeAfterLoad && this$1.removeElement(script);
+    };
 
-    var script = this.createScript('//www.google-analytics.com/analytics.js');
-    this.loadScript(script, 'ga');
-
-    ga('create', account, 'auto', 'moment');
-    ga('send', 'pageview');
-
-    window.ga = ga;
+    var firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(script, firstScript);
   }
+};
 
-  if ( Base$$1 ) Google.__proto__ = Base$$1;
-  Google.prototype = Object.create( Base$$1 && Base$$1.prototype );
-  Google.prototype.constructor = Google;
+var Baidu = function Baidu (account) {
+  window._hmt = window._hmt || [];
+  var script = Common.createScript(("//hm.baidu.com/hm.js?" + account));
+  Common.loadScript(script, '_hmt');
+};
 
-  Google.prototype.pageview = function pageview (page) {
-    console.log(page);
-    window.ga('send', 'pageview', page);
+Baidu.prototype.pageview = function pageview (page) {
+  window._hmt && window._hmt.push(['_trackPageview', ("/" + page)]);
+};
+
+Baidu.prototype.event = function event (options) {
+  window._hmt && window._hmt.push([
+    '_trackEvent',
+    options.page,
+    options.action,
+    options.label,
+    options.value
+  ]);
+};
+
+var Google = function Google (account) {
+  window.GoogleAnalyticsObject = 'ga';
+
+  var ga = window.ga = window.ga || function () {
+    (window.ga.q = window.ga.q || []).push(arguments);
   };
 
-  Google.prototype.event = function event (options) {
-    console.log(options);
-    window.ga(
-      'send',
-      'event',
-      options.page,
-      options.action,
-      options.label,
-      options.value
-    );
-  };
+  ga.q = [];
+  ga.l = 1 * new Date();
 
-  return Google;
-}(Base));
+  ga('create', account, 'auto');
+  ga('send', 'pageview');
+
+  var script = Common.createScript('https://www.google-analytics.com/analytics.js');
+  Common.loadScript(script, 'ga');
+};
+
+Google.prototype.pageview = function pageview (page) {
+  window.ga('send', 'pageview', page);
+};
+
+Google.prototype.event = function event (options) {
+  window.ga(
+    'send',
+    'event',
+    options.page,
+    options.action,
+    options.label,
+    options.value
+  );
+};
 
 var Providers = {
   baidu: Baidu,
