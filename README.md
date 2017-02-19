@@ -14,7 +14,21 @@ $ yarn add yuki-gta
 
 ## Usage
 ```js
-import yuki-gta from 'yuki-gta'
+import Gta from 'yuki-gta'
+
+const gta = new Gta({
+  google: 'UA-********-**',
+  baidu: '*********'
+})
+
+gta.event({
+  page: 'page',
+  action: 'action',
+  label: 'label',
+  value: 1
+})
+
+gta.pageview('page')
 ```
 
 ## Development
