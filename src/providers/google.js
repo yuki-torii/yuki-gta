@@ -32,6 +32,10 @@ class Google {
       options.value
     )
   }
+
+  setUser (id) {
+    window.ga('set', 'userId', id)
+  }
 }
 
 export default Google

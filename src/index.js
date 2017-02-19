@@ -13,13 +13,19 @@ class yukiGta {
 
   pageview (page) {
     this.providers.forEach(p => {
-      p.pageview(page)
+      p.pageview && p.pageview(page)
     })
   }
 
   event (options) {
     this.providers.forEach(p => {
-      p.event(options)
+      p.event && p.event(options)
+    })
+  }
+
+  setUser (id) {
+    this.providers.forEach(p => {
+      p.setUser && p.setUser(id)
     })
   }
 }
