@@ -2,8 +2,6 @@ import Providers from './providers'
 
 class yukiGta {
   constructor (options = {}) {
-    this.version = '0.0.1'
-
     this.providers = Object.keys(options).map((key) => {
       return this.registerProvider(options[key], Providers[key])
     })
