@@ -84,6 +84,10 @@ Google.prototype.event = function event (options) {
   );
 };
 
+Google.prototype.setUser = function setUser (id) {
+  window.ga('set', 'userId', id);
+};
+
 var Providers = {
   baidu: Baidu,
   google: Google
@@ -92,8 +96,6 @@ var Providers = {
 var yukiGta = function yukiGta (options) {
   var this$1 = this;
   if ( options === void 0 ) options = {};
-
-  this.version = '0.0.1';
 
   this.providers = Object.keys(options).map(function (key) {
     return this$1.registerProvider(options[key], Providers[key])
@@ -106,13 +108,19 @@ yukiGta.prototype.registerProvider = function registerProvider (option, Provider
 
 yukiGta.prototype.pageview = function pageview (page) {
   this.providers.forEach(function (p) {
-    p.pageview(page);
+    p.pageview && p.pageview(page);
   });
 };
 
 yukiGta.prototype.event = function event (options) {
   this.providers.forEach(function (p) {
-    p.event(options);
+    p.event && p.event(options);
+  });
+};
+
+yukiGta.prototype.setUser = function setUser (id) {
+  this.providers.forEach(function (p) {
+    p.setUser && p.setUser(id);
   });
 };
 
