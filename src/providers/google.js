@@ -26,7 +26,7 @@ class Google {
     window.ga(
       'send',
       'event',
-      options.page,
+      options.category,
       options.action,
       options.label,
       options.value

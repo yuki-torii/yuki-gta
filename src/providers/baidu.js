@@ -14,7 +14,7 @@ class Baidu {
   event (options) {
     window._hmt && window._hmt.push([
       '_trackEvent',
-      options.page,
+      options.category,
       options.action,
       options.label,
       options.value
