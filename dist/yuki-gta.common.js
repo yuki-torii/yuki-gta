@@ -41,7 +41,7 @@ Baidu.prototype.pageview = function pageview (page) {
 Baidu.prototype.event = function event (options) {
   window._hmt && window._hmt.push([
     '_trackEvent',
-    options.page,
+    options.category,
     options.action,
     options.label,
     options.value
@@ -73,7 +73,7 @@ Google.prototype.event = function event (options) {
   window.ga(
     'send',
     'event',
-    options.page,
+    options.category,
     options.action,
     options.label,
     options.value
