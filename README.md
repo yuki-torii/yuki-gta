@@ -22,7 +22,7 @@ const gta = new Gta({
 })
 
 gta.event({
-  page: 'page',
+  category: 'page',
   action: 'action',
   label: 'label',
   value: 1
@@ -30,6 +30,10 @@ gta.event({
 
 gta.pageview('page')
 ```
+
+## API Documentations
+ - [Google Analytics](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
+ - [Baidu Analytics](http://tongji.baidu.com/open/api/more?p=ref_trackPageview)
 
 ## Development
 ```bash
