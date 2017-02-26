@@ -1,7 +1,7 @@
 {
   "name": "yuki-gta",
   "description": "A npm project",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "limichange <limichange@hotmail.com>",
   "main": "dist/yuki-gta.common.js",
   "unpkg": "dist/yuki-gta.min.js",
