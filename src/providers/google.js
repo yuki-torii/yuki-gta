@@ -19,11 +19,11 @@ class Google {
   }
 
   pageview (page) {
-    window.ga('send', 'pageview', page)
+    window.ga && window.ga('send', 'pageview', page)
   }
 
   event (options) {
-    window.ga(
+    window.ga && window.ga(
       'send',
       'event',
       options.category,
@@ -34,7 +34,7 @@ class Google {
   }
 
   setUser (id) {
-    window.ga('set', 'userId', id)
+    window.ga && window.ga('set', 'userId', id)
   }
 }
 
