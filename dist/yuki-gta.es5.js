@@ -64,11 +64,11 @@ var Google = function Google (account) {
 };
 
 Google.prototype.pageview = function pageview (page) {
-  window.ga('send', 'pageview', page);
+  window.ga && window.ga('send', 'pageview', page);
 };
 
 Google.prototype.event = function event (options) {
-  window.ga(
+  window.ga && window.ga(
     'send',
     'event',
     options.category,
@@ -79,7 +79,7 @@ Google.prototype.event = function event (options) {
 };
 
 Google.prototype.setUser = function setUser (id) {
-  window.ga('set', 'userId', id);
+  window.ga && window.ga('set', 'userId', id);
 };
 
 var Providers = {
